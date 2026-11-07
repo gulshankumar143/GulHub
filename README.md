@@ -118,7 +118,6 @@ GulHub/
 | "The database is not connected" | Verify `MONGO_URL` and ensure your MongoDB IP is allowed in Atlas network access. |
 | GitHub OAuth `redirect_uri` mismatch | The callback URL must match: `http://localhost:5000/api/auth/github/callback` |
 | "GitHub API rate limit reached" | Add `GITHUB_API_KEY` to `.env` to raise the limit from 60 to 5000 requests/hour. Restart the backend afterward. |
-| Browser session is not preserved after login | Clear cookies for `localhost` or use an incognito window. The app uses a dedicated session cookie name (`gulhub.sid`) to avoid conflicts. |
 | "Cannot reach the server" toast | Make sure the backend is running with `npm run dev` from the project root. |
 | `Cannot find package 'connect-mongo'` warning | Run `npm install` in the project root to install the backend dependencies. |
 
