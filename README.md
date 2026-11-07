@@ -1,6 +1,6 @@
+<h1 align="center">GulHub — GitHub Profile &amp; Repository Explorer</h1>
+<p align="center">Explore GitHub profiles and repositories, compare developers, and save profiles and repos with GulHub, a full-stack app built for the GitHub community.</p>
 <p align="center">
-  <h1 align="center">GulHub — GitHub Profile &amp; Repository Explorer</h1>
-  <p align="center">Explore GitHub profiles and repositories, compare developers, and save profiles and repos with GulHub, a full-stack app built for the GitHub community.</p>
   <a href="https://nodejs.org/"><img src="https://img.shields.io/badge/Node.js-18%2B-339933?logo=nodedotjs&logoColor=white" alt="Node.js 18 or newer"></a>
   <a href="https://expressjs.com/"><img src="https://img.shields.io/badge/Express.js-Backend-000000?logo=express&logoColor=white" alt="Express.js backend"></a>
   <a href="https://react.dev/"><img src="https://img.shields.io/badge/React-Frontend-61DAFB?logo=react&logoColor=black" alt="React frontend"></a>
