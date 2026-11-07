@@ -1,0 +1,222 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =====================================================================
+   GulHub theme - "Aurora": violet / pink / cyan on deep indigo
+   ===================================================================== */
+:root {
+  --accent-rgb: 167 139 250;   /* violet */
+  --accent2-rgb: 244 114 182;  /* pink   */
+  --accent3-rgb: 34 211 238;   /* cyan   */
+
+  --bg-base: #0a0618;
+  --fg: #f5f3ff;
+  --fg-muted: #a8a4cc;
+  --border: rgba(167, 139, 250, 0.2);
+  --hover: rgba(167, 139, 250, 0.16);
+  --glass-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025));
+  --bar-bg: rgba(10, 6, 24, 0.82);
+  --tooltip-bg: #150f30;
+  --shadow: 0 10px 34px rgba(0, 0, 0, 0.4);
+
+  --grad: linear-gradient(135deg, #7c3aed 0%, #c026d3 55%, #ec4899 100%);
+  --grad-text: linear-gradient(90deg, #a78bfa, #f472b6, #22d3ee);
+  --glow: 0 6px 22px rgba(192, 38, 211, 0.4);
+
+  color-scheme: dark;
+}
+
+html[data-theme="light"] {
+  --accent-rgb: 124 58 237;
+  --accent2-rgb: 219 39 119;
+  --accent3-rgb: 8 145 178;
+
+  --bg-base: #faf7ff;
+  --fg: #1e1b4b;
+  --fg-muted: #5b5780;
+  --border: rgba(124, 58, 237, 0.22);
+  --hover: rgba(124, 58, 237, 0.1);
+  --glass-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.68));
+  --bar-bg: rgba(255, 255, 255, 0.9);
+  --tooltip-bg: #ffffff;
+  --shadow: 0 10px 30px rgba(76, 29, 149, 0.12);
+
+  --grad-text: linear-gradient(90deg, #6d28d9, #db2777, #0891b2);
+  --glow: 0 6px 20px rgba(124, 58, 237, 0.28);
+
+  color-scheme: light;
+}
+
+body {
+  background-color: var(--bg-base);
+  background-image:
+    radial-gradient(52rem 34rem at 8% -8%, rgba(139, 92, 246, 0.38), transparent 62%),
+    radial-gradient(46rem 32rem at 105% 2%, rgba(236, 72, 153, 0.26), transparent 58%),
+    radial-gradient(48rem 30rem at 55% 115%, rgba(34, 211, 238, 0.2), transparent 62%);
+  background-attachment: fixed;
+  color: var(--fg);
+}
+
+html[data-theme="light"] body {
+  background-image:
+    radial-gradient(52rem 34rem at 8% -8%, rgba(167, 139, 250, 0.35), transparent 62%),
+    radial-gradient(46rem 32rem at 105% 2%, rgba(244, 114, 182, 0.28), transparent 58%),
+    radial-gradient(48rem 30rem at 55% 115%, rgba(103, 232, 249, 0.3), transparent 62%);
+}
+
+/* Every grey text utility follows the theme's muted colour */
+.text-gray-300, .text-gray-400, .text-gray-500, .text-gray-600 { color: var(--fg-muted); }
+
+::placeholder { color: var(--fg-muted); opacity: 0.75; }
+::selection { background: rgb(var(--accent-rgb) / 0.4); color: inherit; }
+select option { color: #111827; background: #ffffff; }
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: rgb(var(--accent-rgb)) !important;
+  box-shadow: 0 0 0 3px rgb(var(--accent-rgb) / 0.25);
+}
+
+/* scrollbar */
+::-webkit-scrollbar { width: 9px; height: 9px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgb(var(--accent-rgb) / 0.7), rgb(var(--accent2-rgb) / 0.7));
+  border-radius: 8px;
+}
+
+@layer components {
+  /* ---------- cards ---------- */
+  .bg-glass {
+    background-clip: padding-box;
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    background-image: var(--glass-bg);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    color: var(--fg);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .bg-glass:hover {
+    border-color: rgb(var(--accent-rgb) / 0.45);
+  }
+  /* small controls (inputs, chips) don't need the big drop shadow */
+  input.bg-glass, select.bg-glass, button.bg-glass, a.bg-glass, .pill.bg-glass { box-shadow: none; }
+
+  .text-gradient {
+    background-image: var(--grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .avatar-ring {
+    box-shadow: 0 0 0 2px rgb(var(--accent-rgb) / 0.7), 0 8px 26px rgb(var(--accent2-rgb) / 0.3);
+  }
+
+  /* ---------- sidebar ---------- */
+  .nav-item {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    padding: 0.45rem;
+    border-radius: 0.7rem;
+    transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  .nav-item:hover { background-color: var(--hover); transform: translateY(-1px); }
+  .nav-item.active {
+    background-image: var(--grad);
+    color: #fff;
+    box-shadow: var(--glow);
+  }
+
+  /* ---------- buttons ---------- */
+  .btn-primary {
+    color: #fff;
+    font-weight: 600;
+    border-radius: 0.7rem;
+    background-image: var(--grad);
+    box-shadow: var(--glow);
+    transition: transform 0.2s, filter 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover { filter: brightness(1.12); transform: translateY(-1px); }
+  .btn-primary:active { transform: scale(0.96); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; filter: none; }
+
+  .btn-github {
+    color: #fff;
+    background: #1b1636;
+    border: 1px solid rgb(var(--accent-rgb) / 0.4);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+  .btn-github:hover {
+    border-color: rgb(var(--accent-rgb));
+    box-shadow: 0 0 0 3px rgb(var(--accent-rgb) / 0.25), var(--glow);
+    transform: translateY(-1px);
+  }
+
+  /* ---------- pills (stars / forks / clone / topics) ---------- */
+  .pill {
+    --c: var(--fg-muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.125rem 0.65rem;
+    border-radius: 9999px;
+    color: var(--c);
+    background: color-mix(in srgb, var(--c) 15%, transparent);
+    border: 1px solid color-mix(in srgb, var(--c) 38%, transparent);
+  }
+  .pill-star { --c: #fbbf24; }
+  .pill-fork { --c: #a78bfa; }
+  .pill-clone { --c: #34d399; cursor: pointer; transition: transform 0.15s; }
+  .pill-clone:hover { transform: translateY(-1px); }
+  .pill-topic { --c: rgb(var(--accent3-rgb)); }
+  html[data-theme="light"] .pill-star { --c: #b45309; }
+  html[data-theme="light"] .pill-fork { --c: #6d28d9; }
+  html[data-theme="light"] .pill-clone { --c: #047857; }
+
+  /* ---------- repo timeline ---------- */
+  .timeline-line { border-color: rgb(var(--accent-rgb) / 0.3); }
+  .timeline-dot {
+    background-image: var(--grad);
+    box-shadow: 0 0 14px rgb(var(--accent2-rgb) / 0.55);
+  }
+
+  /* ---------- README rendering (Tailwind's preflight strips markdown styles) ---------- */
+  .markdown-body { line-height: 1.65; overflow-wrap: anywhere; }
+  .markdown-body h1, .markdown-body h2, .markdown-body h3,
+  .markdown-body h4, .markdown-body h5, .markdown-body h6 {
+    font-weight: 700; margin: 1.3em 0 0.5em;
+  }
+  .markdown-body h1 { font-size: 1.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.3em; }
+  .markdown-body h2 { font-size: 1.4rem; border-bottom: 1px solid var(--border); padding-bottom: 0.3em; }
+  .markdown-body h3 { font-size: 1.2rem; }
+  .markdown-body p, .markdown-body ul, .markdown-body ol,
+  .markdown-body pre, .markdown-body table, .markdown-body blockquote { margin: 0.8em 0; }
+  .markdown-body ul { list-style: disc; padding-left: 1.6rem; }
+  .markdown-body ol { list-style: decimal; padding-left: 1.6rem; }
+  .markdown-body a { color: rgb(var(--accent3-rgb)); text-decoration: underline; }
+  .markdown-body code {
+    background: rgb(var(--accent-rgb) / 0.16); padding: 0.15em 0.4em;
+    border-radius: 6px; font-size: 0.9em;
+  }
+  .markdown-body pre {
+    background: rgba(0, 0, 0, 0.28); padding: 1rem;
+    border-radius: 10px; overflow: auto; border: 1px solid var(--border);
+  }
+  html[data-theme="light"] .markdown-body pre { background: rgba(124, 58, 237, 0.06); }
+  .markdown-body pre code { background: none; padding: 0; }
+  .markdown-body img { max-width: 100%; display: inline-block; }
+  .markdown-body table { display: block; overflow-x: auto; border-collapse: collapse; }
+  .markdown-body th, .markdown-body td { border: 1px solid var(--border); padding: 0.4rem 0.7rem; }
+  .markdown-body blockquote { border-left: 4px solid rgb(var(--accent-rgb) / 0.6); padding-left: 1rem; opacity: 0.9; }
+  .markdown-body hr { border-color: var(--border); margin: 1.2em 0; }
+}
+
+/* The GitHub logo is white; invert it on the light theme */
+html[data-theme="light"] .logo-img { filter: invert(1); }

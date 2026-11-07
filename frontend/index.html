@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="GulHub – explore GitHub profiles and repositories, compare developers, and bookmark your favourite repos."
+    />
+    <meta name="theme-color" content="#0a0618" />
+    <title>GulHub – Explore GitHub profiles</title>
+    <script>
+      // Apply the saved theme before first paint to avoid a flash
+      try {
+        var t = localStorage.getItem("gulhub-theme");
+        if (t === "light" || t === "dark") {
+          document.documentElement.setAttribute("data-theme", t);
+        }
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
