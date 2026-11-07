@@ -35,7 +35,13 @@ Before running the app, make sure you have:
 
 ## Getting Started
 
-1. Clone the repository
+1. Clone the repository:
+
+```bash
+git clone https://github.com/gulshankumar143/GulHub.git
+cd GulHub
+```
+
 2. Install backend dependencies:
 
 ```bash
@@ -51,7 +57,7 @@ npm install --prefix frontend
 4. Create a local environment file from the example:
 
 ```bash
-copy .env.example .env
+copy .env.example
 ```
 
 5. Fill in the required values in `.env`:
@@ -60,7 +66,7 @@ copy .env.example .env
 GITHUB_CLIENT_ID=your_github_client_id
 GITHUB_CLIENT_SECRET=your_github_client_secret
 GITHUB_CALLBACK_URL=http://localhost:5000/api/auth/github/callback
-MONGO_URL=mongodb+srv://<user>:<password>@<cluster>.mongodb.net/gulhub
+MONGO_URL=mongodb_URL
 CLIENT_BASE_URL=http://localhost:3000
 SESSION_SECRET=change_me_to_a_long_random_string
 PORT=5000
